@@ -6,6 +6,7 @@ resource "hcloud_server" "server-1" {
     ipv4_enabled = true
     ipv6_enabled = true
   }
+  location = "nbg1"
   user_data = file("cloud-init.yaml")
   firewall_ids = [hcloud_firewall.firewall.id]
   ssh_keys = [hcloud_ssh_key.main.id]
