@@ -23,6 +23,10 @@ write_files:
   - path: /etc/sysctl.d/enabled_ipv4_forwarding.conf
     content: |
       net.ipv4.conf.all.forwarding=1
+  - path: /root/initial-00-initial-script.sh
+    content: |
+      ${file("initial-script.sh")}
+
 
 # create the docker group
 groups:
@@ -32,10 +36,6 @@ groups:
 system_info:
   default_user:
     groups: [ docker ]
-
-power_state:
-  mode: reboot
-  message: Restarting after installing docker & docker-compose
 
 runcmd:
   - |
