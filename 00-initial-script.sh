@@ -10,8 +10,8 @@ APP_DOMAIN="inscripcion.candeladebuena.com"
 VITE_FRONTEND_URL=https://$APP_DOMAIN
 VITE_API_URL_CLIENT=https://$APP_DOMAIN/api
 VITE_API_URL_SERVER=https://$APP_DOMAIN/api
-APP_CDN_URL=http://$APP_DOMAIN/storage
-APP_FRONTEND_URL=http://$APP_DOMAIN
+APP_CDN_URL=https://$APP_DOMAIN/storage
+APP_FRONTEND_URL=https://$APP_DOMAIN
 
 sed -i "s|^APP_KEY=.*|APP_KEY=\"base64:$APP_KEY_CALC\"|" .env
 sed -i "s|^JWT_SECRET=.*|JWT_SECRET=\"$JWT_SECRET_CALC\"|" .env
