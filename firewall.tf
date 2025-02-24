@@ -44,4 +44,15 @@ resource "hcloud_firewall" "firewall" {
     ]
   }
 
+  # allow nginx-proxy-manager
+  rule {
+    direction = "in"
+    protocol  = "tcp"
+    port      = "81"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+
 }

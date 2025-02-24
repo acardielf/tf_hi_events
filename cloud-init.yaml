@@ -16,6 +16,7 @@ packages:
   - docker-ce
   - docker-ce-cli
   - containerd.io
+  - certbot
 
 # Enable ipv4 forwarding, required on CIS hardened machines
 write_files:
@@ -44,4 +45,8 @@ runcmd:
     APP_KEY_CALC="$(openssl rand -base64 32)"
     sed -i "s|^APP_KEY=.*|APP_KEY=\"base64:$APP_KEY_CALC\"|" .env
     sed -i "s|^JWT_SECRET=.*|JWT_SECRET=\"$JWT_SECRET_CALC\"|" .env
-    docker-compose up -d
+    docker run -d --name=nginx-proxy-manager \
+      -p 80:80 -p 443:443 -p 81:81 \
+      -v /root/nginx-proxy-manager/data:/data \
+      -v /root/nginx-proxy-manager/letsencrypt:/etc/letsencrypt \
+      jc21/nginx-proxy-manager
