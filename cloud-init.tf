@@ -23,7 +23,10 @@ data "cloudinit_config" "initial" {
     filename     = "01-nginx-proxy.sh"
     content_type = "text/x-shellscript"
 
-    content = file("${path.root}/01-nginx-proxy.sh")
+    content = templatefile("${path.root}/01-nginx-proxy.sh.tpl", {
+      nginx_user = sensitive(var.nginx_proxy_manager_admin_email),
+      nginx_password = sensitive(var.nginx_proxy_manager_admin_password)
+    })
   }
 
   part {
