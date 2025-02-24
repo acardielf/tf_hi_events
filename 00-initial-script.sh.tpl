@@ -6,12 +6,12 @@ cd /root/hi.events/docker/all-in-one
 
 JWT_SECRET_CALC=$(openssl rand -base64 32)
 APP_KEY_CALC="$(openssl rand -base64 32)"
-APP_DOMAIN="inscripcion.candeladebuena.com"
-VITE_FRONTEND_URL=https://$APP_DOMAIN
-VITE_API_URL_CLIENT=https://$APP_DOMAIN/api
-VITE_API_URL_SERVER=https://$APP_DOMAIN/api
-APP_CDN_URL=https://$APP_DOMAIN/storage
-APP_FRONTEND_URL=https://$APP_DOMAIN
+APP_DOMAIN=${app_domain}
+VITE_FRONTEND_URL=https://${app_domain}
+VITE_API_URL_CLIENT=https://${app_domain}/api
+VITE_API_URL_SERVER=https://${app_domain}/api
+APP_CDN_URL=https://${app_domain}/storage
+APP_FRONTEND_URL=https://${app_domain}
 
 sed -i "s|^APP_KEY=.*|APP_KEY=\"base64:$APP_KEY_CALC\"|" .env
 sed -i "s|^JWT_SECRET=.*|JWT_SECRET=\"$JWT_SECRET_CALC\"|" .env

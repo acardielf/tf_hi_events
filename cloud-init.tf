@@ -13,7 +13,10 @@ data "cloudinit_config" "initial" {
     filename     = "00-initial-script.sh"
     content_type = "text/x-shellscript"
 
-    content = file("${path.root}/00-initial-script.sh")
+    content = templatefile("${path.root}/00-initial-script.sh.tpl", {
+      app_domain = sensitive(var.app_domain)
+    })
+
   }
 
   part {

@@ -8,7 +8,7 @@ variable "ssh_key" {
   sensitive = true
 }
 
-variable "domain" {
+variable "app_domain" {
   description = "The domain name to use for the server."
   type        = string
 }
